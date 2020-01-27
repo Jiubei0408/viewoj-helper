@@ -20,9 +20,10 @@ def get_cookies(email, password):
             jigsaw.run()
             jigsaw.url_to_be('https://pintia.cn/problem-sets?tab=0')
             break
-        except:
+        except Exception as e:
             if t >= 5:
-                raise Exception('login fail')
+                jigsaw.close()
+                raise e
     cookies = jigsaw.get_cookies()
     jigsaw.close()
     res = ''.join(['{}={};'.format(i['name'], i['value']) for i in cookies])
