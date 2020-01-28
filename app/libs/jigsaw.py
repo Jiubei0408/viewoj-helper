@@ -169,3 +169,11 @@ class Jigsaw:
 
     def url_to_be(self, url: str):
         self.WAIT.until(EC.url_to_be(url))
+
+    def wait_for_element_by_classname(self, class_name):
+        locator = (By.CLASS_NAME, class_name)
+        try:
+            self.WAIT.until(EC.presence_of_element_located(locator))
+        except:
+            return False
+        return self.driver.find_elements_by_class_name('notification-message')[0].text

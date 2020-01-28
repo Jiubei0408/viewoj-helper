@@ -18,9 +18,15 @@ def get_cookies(email, password):
         t += 1
         try:
             jigsaw.run()
+            test = jigsaw.wait_for_element_by_classname('notification-message')
+            if test:
+                raise Exception('wrong password')
             jigsaw.url_to_be('https://pintia.cn/problem-sets?tab=0')
             break
         except Exception as e:
+            if str(e) == 'wrong password':
+                jigsaw.close()
+                raise e
             if t >= 5:
                 jigsaw.close()
                 raise e
@@ -41,7 +47,6 @@ def get_pta_cookies_api():
             raise Exception('password required')
         cookies = get_cookies(username, password)
     except Exception as e:
-        # todo:密码错误的判定
         error = str(e)
         if error == '':
             error = 'Unknown Error'
