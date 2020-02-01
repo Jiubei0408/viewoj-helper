@@ -32,7 +32,7 @@ def get_cookies(email, password):
                 raise e
     cookies = jigsaw.get_cookies()
     jigsaw.close()
-    res = ''.join(['{}={}; '.format(i['name'], i['value']) for i in cookies])
+    res = '; '.join(['{}={}'.format(i['name'], i['value']) for i in cookies])
     return res
 
 
