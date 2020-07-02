@@ -11,7 +11,7 @@ def get_cookies(email, password):
 
     jigsaw.send_keys(email, '//input[@name="email"]')
     jigsaw.send_keys(password, '//input[@name="password"]')
-    jigsaw.click('//button[@class="btn btn-primary"]')
+    jigsaw.click('//button[@class="pc-button pc-color-primary cur-p"]')
 
     t = 0
     while 1:

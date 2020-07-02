@@ -163,8 +163,11 @@ class Jigsaw:
         element.send_keys(value)
 
     def click(self, xpath: str):
+        try:
+            element = self.driver.find_element_by_xpath(xpath)
+        except:
+            raise Exception("xpath not found:", xpath)
         self.WAIT.until(EC.element_to_be_clickable((By.XPATH, xpath)))
-        element = self.driver.find_element_by_xpath(xpath)
         element.click()
 
     def url_to_be(self, url: str):
